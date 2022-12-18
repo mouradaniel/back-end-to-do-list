@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema(
   {
     category: {
-      type: String
+      type: String,
+      require: true
     },
     description: {
-      type: String
+      type: String,
+      require: true
     },
     completed: {
       type: Boolean,
