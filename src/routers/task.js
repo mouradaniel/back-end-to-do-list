@@ -44,16 +44,30 @@ router.patch("/tasks/:id", async (req, res) => {
     const category = req.body.category;
     const description = req.body.description;
     const priority = req.body.priority;
-    
+
     const result = await Task.updateOne({ _id }, { category, description, priority });
 
     if (!result) {
       return res.status(404).send();
     }
-    
+
     res.send("Updated!");
   } catch (e) {
     res.status(400).send(e);
+  }
+});
+
+router.delete("/tasks/:id", async (req, res) => {
+  try {
+    const task = await Task.findOneAndDelete({ _id: req.params.id });
+
+    if (!task) {
+      res.status(404).send();
+    }
+
+    res.send("Deleted!");
+  } catch (e) {
+    res.status(500).send();
   }
 });
 
