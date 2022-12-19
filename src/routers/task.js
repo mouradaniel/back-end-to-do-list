@@ -38,4 +38,23 @@ router.get("/tasks/:id", async (req, res) => {
   }
 });
 
+router.patch("/tasks/:id", async (req, res) => {
+  try {
+    const _id = req.params.id;
+    const category = req.body.category;
+    const description = req.body.description;
+    const priority = req.body.priority;
+    
+    const result = await Task.updateOne({ _id }, { category, description, priority });
+
+    if (!result) {
+      return res.status(404).send();
+    }
+    
+    res.send("Updated!");
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
 module.exports = router;
