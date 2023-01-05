@@ -1,14 +1,13 @@
 import dotenv from 'dotenv';
 import express from 'express';
 
-import './db/mongoose.js';
-
-import taskRouter from './routers/task.js';
+import { router } from './routes';
 
 const app = express();
 
 app.use(express.json());
-app.use(taskRouter);
+
+app.use(router);
 
 dotenv.config();
 
