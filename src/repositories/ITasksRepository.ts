@@ -1,3 +1,5 @@
+import { Task } from '../model/Task';
+
 interface ICreateTaskDTO {
   category: string;
   description: string;
@@ -6,6 +8,7 @@ interface ICreateTaskDTO {
 
 interface ITasksRepository {
   create({ category, description, priority }: ICreateTaskDTO): void;
+  list(): Task[];
 }
 
 export { ICreateTaskDTO, ITasksRepository };
